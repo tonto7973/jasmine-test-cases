@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "module":"commonjs",
+    "lib": ["es5", "es2015"],
+    "strict": true,
+    "sourceMap": true,
+    "noImplicitThis": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "./dist",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "files": [
+    "./node_modules/jasmine-expect/jasmine-matchers.d.ts",
+    "./src/index.d.ts",
+    "./src/globals.d.ts"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./e2e/**/*.ts"
+  ]
+}
