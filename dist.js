@@ -63,6 +63,7 @@ tasks.add('setup typings', () => {
         }
     });
     write('index.d.ts', data);
+    write('register.d.ts', data.replace(/export[\s]+declare/gi, 'declare'));
 });
 
 tasks.run();
