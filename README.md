@@ -39,19 +39,23 @@ const using = require('jasmine-test-cases'); // javascript
 import { using } from 'jasmine-test-cases'; // typescript
 ```
 
-Optionally, you can register jasmine-test-cases globally:
+Optionally, you can register jasmine-test-cases **globally**:
 
 ```sh
-jasmine --helper=jasmine.conf.js src/**/*.spec.js
+jasmine --helper=node_modules/jasmine-test-cases/register.js src/**/*.spec.js
 ```
 
-and in `jasmine.conf.js`:
+This will register global `using()` function that can be used in any test file passed to jasmine.
 
-```js
-require('jasmine-test-cases/register');
+When using typescript, you need to update `tsconfig.json` file and add:
+
+```json
+    "files": [
+      "node_modules/jasmine-test-cases/register.d.ts"
+    ]
 ```
 
-This will register a global `using()` function that can be used in any test file passed to jasmine.
+to register typings for the global `using()` function.
 
 ## Usage
 
