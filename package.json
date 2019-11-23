@@ -26,9 +26,9 @@
     "build": "tsc -p tsconfig.build.json --listEmittedFiles true --diagnostics true",
     "clean": "rimraf dist && rimraf .nyc_output && rimraf coverage",
     "lint": "tslint -p tsconfig.json",
-    "test": "nyc jasmine-ts --fail-fast=false --random=false --helper=jasmine.conf.js src/**/*.spec.ts",
-    "tdd": "nodemon --watch src -e ts --exec \"jasmine-ts --fail-fast=false --random=false --helper=jasmine.conf.js src/**/*.spec.ts\"",
-    "e2e:node": "jasmine-ts --random=false --helper=jasmine.conf.js e2e/test/**/*.spec.ts",
+    "test": "ts-node node_modules/jasmine/bin/jasmine -- --fail-fast=false --random=false --helper=jasmine.conf.js src/**/*.spec.ts",
+    "tdd": "nodemon --watch src -e ts --exec \"ts-node node_modules/jasmine/bin/jasmine -- --fail-fast=false --random=false --helper=jasmine.conf.js src/**/*.spec.ts\"",
+    "e2e:node": "ts-node node_modules/jasmine/bin/jasmine -- --random=false --helper=jasmine.conf.js e2e/test/**/*.spec.ts",
     "e2e:browser": "karma start e2e/karma.conf.js"
   },
   "engines": {
@@ -45,7 +45,6 @@
     "jasmine": "3.1.0",
     "jasmine-console-reporter": "3.0.2",
     "jasmine-expect": "3.8.3",
-    "jasmine-ts": "0.2.1",
     "karma": "4.1.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-jasmine": "^1.1.2",
