@@ -19,7 +19,7 @@ describe('Utils', () => {
         using(undefined).
             it('should return true when value is null or undefined', value => {
                 const result = Utils.isEmpty(value);
-                expect(result).to.equal(true);
+                expect(result).toBe(true);
             });
     });
 });
@@ -27,7 +27,7 @@ describe('Utils', () => {
 
 ![Screenshot](screenshot.png)
 
-## Setup
+## Setup (single file)
 
 Import jasmine-test-cases into your test file:
 
@@ -39,7 +39,9 @@ const using = require('jasmine-test-cases'); // javascript
 import { using } from 'jasmine-test-cases'; // typescript
 ```
 
-Optionally, you can register jasmine-test-cases **globally**:
+## Setup (global - common)
+
+You can register jasmine-test-cases **globally**:
 
 ```sh
 jasmine --helper=node_modules/jasmine-test-cases/register.js src/**/*.spec.js
@@ -56,6 +58,35 @@ When using typescript, you need to update `tsconfig.json` file and add:
 ```
 
 to register typings for the global `using()` function.
+
+## Setup (global - Angular)
+
+Angular requires slightly different approach to registering `using()` function **globally**:
+
+1. Edit `src/test.ts` and add the following dependency at top:
+
+   ```typescript
+   import 'jasmine-test-cases/register';
+   ```
+
+- (Angular 6): Edit `src/tsconfig.spec.json` and update the files section:
+
+   ```js
+   "files": [
+    "../node_modules/jasmine-test-cases/register.d.ts",
+    // ... other global files
+   ]
+   ```
+- (Angular 8): Edit `tsconfig.spec.json` and update the files section:
+
+   ```js
+   "files": [
+    "node_modules/jasmine-test-cases/register.d.ts",
+    // ... other global files
+   ]
+   ``` 
+
+Thats it. Now you can run `ng test` and enjoy parametrized tests in angular.
 
 ## Usage
 
@@ -144,7 +175,7 @@ Pass multiple arguments to `using` and use them in `it` statements:
 using(1, 'bus').
 using(2, 'cars').
     it('should be a number followed by a string', (amount, title) => {
-        expect(amount + ' ' + title).to.match(/^[0-9]\s[a-z]+$/);
+        expect(amount + ' ' + title).toMatch(/^[0-9]\s[a-z]+$/);
     });
 ```
 
@@ -156,7 +187,7 @@ using.cases(
     [2, 'cars']
 ).
 it('should be a number followed by a string', (amount, title) => {
-    expect(amount + ' ' + title).to.match(/^[0-9]\s[a-z]+$/);
+    expect(amount + ' ' + title).toMatch(/^[0-9]\s[a-z]+$/);
 });
 ```
 
@@ -182,7 +213,7 @@ Add the `done` argument at the end of argument list in `it` statements:
 using(1, 'bus').
 using(2, 'cars').
     it("should be a number followed by a string", (amount, title, done) => {
-        expect(amount + ' ' + title).to.match(/^[0-9]\s[a-z]+$/);
+        expect(amount + ' ' + title).toMatch(/^[0-9]\s[a-z]+$/);
         done();
     });
 ```
