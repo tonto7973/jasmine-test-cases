@@ -1,6 +1,6 @@
 {
   "name": "jasmine-test-cases",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parametrized test cases for Jasmine",
   "author": "Ondrej Urik",
   "license": "MIT",
@@ -45,24 +45,25 @@
     "jasmine": "3.1.0",
     "jasmine-console-reporter": "3.0.2",
     "jasmine-expect": "3.8.3",
-    "karma": "4.1.0",
+    "karma": "5.0.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-jasmine": "^1.1.2",
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "3.0.0",
     "mock-require": "3.0.2",
-    "nodemon": "1.17.5",
+    "nodemon": "2.0.3",
     "nyc": "14.1.1",
     "rimraf": "2.6.2",
     "source-map-support": "0.5.6",
     "ts-node": "6.1.0",
     "tslint": "5.18.0",
     "typescript": "2.8.3",
-    "webpack": "4.41.2"
+    "webpack": "4.43.0"
   },
   "peerDependencies": {
-    "jasmine": "^3.1.0"
+    "jasmine": "^3.1.0",
+    "chalk": "^2.4.1"
   },
   "nyc": {
     "extension": [
