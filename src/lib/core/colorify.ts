@@ -1,7 +1,13 @@
-
 export const colorify = (() => {
-    const isBrowser = typeof process !== 'undefined' && (process as any).browser;
-    const chalk = isBrowser ? null : require('chalk');
-
-    return (str: string): string => chalk ? chalk.magenta(str) : str;
+    const getColorsEnabled = () => {
+        const colorsEnabled = (<any>colorify).enabled;
+        return (typeof colorsEnabled === 'undefined' && typeof process !== 'undefined')
+            ? true
+            : !!colorsEnabled;
+    };
+    return (s: string) => getColorsEnabled() ? '\u001b[35m' + s + '\u001b[39m' : s;
 })();
+
+export const enableColors = (colors?: boolean): void => {
+    (<any>colorify).enabled = colors;
+};

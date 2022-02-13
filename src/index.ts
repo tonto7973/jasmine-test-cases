@@ -1,5 +1,6 @@
 import { using as using$ } from './lib/using';
 import { cases as cases$ } from './lib/cases';
+import { enableColors } from './lib/core/colorify';
 
 declare const module: any;
 
@@ -11,8 +12,9 @@ const context =
 
 const default$ = (() => {
     const result = using$.bind(context);
-    result.cases = cases$.bind(context);
-    result.using = result;
+    (<any>result).cases = cases$.bind(context);
+    (<any>result).using = result;
+    (<any>result).enableColors = enableColors;
     return result;
 })();
 
@@ -33,6 +35,7 @@ export declare function using<T1, T2, T3, T4, T5, T6, T7>(arg1: T1, arg2: T2, ar
 export declare function using(...arg: any[]): jasmine.IUsingTestWrapper<any>;
 export declare namespace using {
     type NotArray<T> = T & Exclude<T, any[]>;
+    function enableColors(colors: boolean): void;
     function cases(...arg: Array<any[]>): jasmine.IAnyCasesTestWrapper;
     function cases<T>(arg: NotArray<T>): jasmine.ICasesTestWrapper<T>;
     function cases<T1, T2>(arg1: NotArray<T1>, arg2: NotArray<T2>): jasmine.ICasesTestWrapper<T1 | T2>;

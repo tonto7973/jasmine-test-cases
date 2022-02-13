@@ -3,7 +3,7 @@ import { cases as $cases } from './cases';
 describe('cases', () => {
 
     const context: any = { };
-    const cases: <T, V>(...cases: Array<T | V>) => jasmine.ICasesTestWrapper<T | V> = $cases.bind(context);
+    const cases: <T>(...cases: Array<T>) => jasmine.ICasesTestWrapper<T> = $cases.bind(context);
 
     beforeEach(() => {
         context.it = () => new Object();
@@ -62,7 +62,7 @@ describe('cases', () => {
         it('should convert arguments to array automatically', () => {
             context.it = (e: string, a: any) => a() && new Object();
             const result: any[] = [];
-            cases(5, true, 'a', /x/).it('e', arg => { result.push(arg); });
+            cases<number|boolean|string|RegExp>(5, true, 'a', /x/).it('e', arg => { result.push(arg); });
             expect(result).toEqual([5, true, 'a', /x/]);
         });
         it('should call it() the number of times matching the number of arguments', () => {

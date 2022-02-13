@@ -1,10 +1,7 @@
-require('webpack');
-
 module.exports = config => {
-
     config.set({
         basePath: '',
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'webpack'],
         files:[{ pattern: './karma.shim.js', watched: false }],
         exclude: [],
         preprocessors: {
@@ -22,7 +19,12 @@ module.exports = config => {
                 rules: [
                     {
                         test: /\.ts$/,
-                        loaders: ['awesome-typescript-loader?configFileName=./e2e/tsconfig.e2e.json'],
+                        use: [{
+                            loader: 'awesome-typescript-loader',
+                            options: {
+                                configFileName: './e2e/tsconfig.e2e.json'
+                            }
+                        }],
                         exclude: [/node_modules/]
                     }
                 ]
@@ -36,5 +38,4 @@ module.exports = config => {
         browsers: ['ChromeHeadless'],
         singleRun: true
     });
-
 };

@@ -47,6 +47,12 @@ You can register jasmine-test-cases **globally**:
 jasmine --helper=node_modules/jasmine-test-cases/register.js src/**/*.spec.js
 ```
 
+or, if using `jasmine.conf.js` via `jasmine --helper=jasmine.conf.js`:
+
+```js
+require('jasmine-test-cases/register');
+```
+
 This will register global `using()` function that can be used in any test file passed to jasmine.
 
 When using typescript, you need to update `tsconfig.json` file and add:
@@ -87,6 +93,14 @@ Angular requires slightly different approach to registering `using()` function *
    ``` 
 
 Thats it. Now you can run `ng test` and enjoy parametrized tests in angular.
+
+## Coloring
+
+Coloring is auto-detected by default. To enable or disable coloring, add the following line to `jasmine.conf.js`:
+
+```js
+require('jasmine-test-cases').enableColors(true|false|undefined);
+```
 
 ## Usage
 
