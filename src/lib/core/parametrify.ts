@@ -13,9 +13,9 @@ export const parametrify = (
             if (typeof assertion !== 'function') {
                 return original(message, assertion, timeout);
             } else if (assertion.length > args.length) {
-                return original(message, function(doneFn) { return assertion.apply(this, args.concat([doneFn])); }, timeout);
+                return original(message, function(doneFn: any) { return assertion.apply(this, args.concat([doneFn]) as never); }, timeout);
             } else {
-                return original(message, function() { return assertion.apply(this, args); }, timeout);
+                return original(message, function() { return assertion.apply(this, args as never); }, timeout);
             }
         };
         // see https://github.com/jasmine/jasmine/blob/9472df0db499679534143b7956ea83281bb0e02e/src/core/Spec.js

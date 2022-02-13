@@ -21,10 +21,20 @@ describe('utils', () => {
     });
 
     describe('using smoke tests', () => {
+        // normal
         using(null).
         using(undefined).
             it('should check if argument is null or undefined', arg => {
                 expect(arg === null || arg === undefined).toBe(true);
+            });
+        // async
+        using('a').
+        using('b').
+            it('should use arg asynchronously', async (arg) => {
+                await new Promise<boolean>((resolve, _) => {
+                    setTimeout(() => resolve(true), 5);
+                });
+                expect(typeof arg === 'string');
             });
         // done
         using(1).
@@ -77,7 +87,7 @@ describe('utils', () => {
         // done
         using.cases(1, 2, 3).
             it('should run done as the last argument', (arg, done) => {
-                arg = Math.random();
+                arg = <any>Math.random();
                 expect(done).toBeFunction();
                 done();
             });

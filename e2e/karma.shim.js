@@ -1,4 +1,5 @@
 require('jasmine-expect');
+require('./../src/index').enableColors(true); // require('jasmine-test-cases').enableColors(true);
 
 Error.stackTraceLimit = Infinity;
 
